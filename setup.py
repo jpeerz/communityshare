@@ -162,7 +162,7 @@ hobbies = [
 ]
 
 def gen_email(first_name, last_name):
-    return '{0}.{1}@notarealemail.com'.format(first_name, last_name)
+    return '{0}.{1}@example.com'.format(first_name, last_name)
 
 def gen_labels():
     return [
