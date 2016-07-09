@@ -207,8 +207,11 @@ def gen_new_name(existing_users, first_names, last_names):
 
     return None, None
 
-def random_institution_maker(institutions, roles):
-    return lambda _=None: InstitutionAssociation(institution=random.choice(institutions), role=random.choice(roles))
+def gen_random_institution(institutions, roles):
+    return InstitutionAssociation(
+        institution=random.choice(institutions),
+        role=random.choice(roles)
+    )
 
 def make_random_user():
     # Make the user
@@ -226,13 +229,17 @@ def make_random_user():
         searcher_role = 'educator'
         searching_for_role = 'partner'
         bio = generate_educator_bio()
-        institution_associations = [random_institution_maker(schools, educator_roles)()]
+        associations = [
+            gen_random_institution(schools, educator_roles)
+        ]
     else:
         searcher_role = 'partner'
         searching_for_role = 'educator'
         bio = generate_expert_bio()
-        n_institutions = random.randint(1, 2)
-        institution_associations = list(map(random_institution_maker(companies, partner_roles), range(n_institutions)))
+        associations = [
+            gen_random_institution(companies, partner_roles)
+            for _ in range(random.randint(1, 2))
+        ]
 
     new_user = User(
         name='{0} {1}'.format(first_name, last_name),
@@ -240,7 +247,7 @@ def make_random_user():
         password_hash=password_hash,
         picture_filename=random.choice(profile_picture_filenames),
         bio=bio,
-        institution_associations=institution_associations,
+        institution_associations=associations,
         is_administrator=False,
         email_confirmed=True
     )
