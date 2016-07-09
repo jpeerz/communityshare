@@ -187,7 +187,8 @@ def generate_expert_bio():
     return "I specialize in the area of {0}.  My main hobby is {1}.".format(specialty, hobby)
 
 def generate_educator_bio():
-    return "My main hobby is {0}".format(random.choice(hobbies))
+	bio = "My main hobby is {0}".format(random.choice(hobbies))
+	return bio
 
 def make_random_location():
     latitude = 32.223303 + (random.random()-0.5)+0.1
