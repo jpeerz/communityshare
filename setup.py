@@ -173,7 +173,10 @@ def gen_labels():
     ]
 
 def make_institutions(infos):
-    return [Institution(name=name,institution_type=institution_type) for name, institution_type in infos]
+    return [
+        Institution(name=name,institution_type=institution_type)
+        for name, institution_type in infos
+    ]
 
 companies = make_institutions(company_infos)
 schools = make_institutions(school_infos)
