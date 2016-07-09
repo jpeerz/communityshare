@@ -197,7 +197,7 @@ def make_random_location():
 user_names_used = set()
 
 def gen_new_name(existing_users, first_names, last_names):
-    max_combinations = len(first_names) + len(last_names)
+    max_combinations = len(first_names) * len(last_names)
 
     # stop trying after a while to keep from infinite iteration
     for attempt_count in range(max_combinations):
