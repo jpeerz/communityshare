@@ -165,7 +165,12 @@ def gen_email(first_name, last_name):
     return '{0}.{1}@notarealemail.com'.format(first_name, last_name)
 
 def gen_labels():
-    return [label for label_set, probability in label_probabilities for label in label_set if random.random() < probability]
+    return [
+        label
+        for label_set, probability in label_probabilities
+        for label in label_set
+        if random.random() < probability
+    ]
 
 def make_institutions(infos):
     return [Institution(name=name,institution_type=institution_type) for name, institution_type in infos]
